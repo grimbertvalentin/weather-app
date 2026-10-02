@@ -1,47 +1,55 @@
 # Weather App
 
-Check the current weather on any city on the planet. Switch between metric and imperial units.
+Application météo destinée aux écrans d'information des transports en commun.
+Elle affiche la météo actuelle de la ville configurée, avec les données de l'API [Open-Meteo](https://open-meteo.com/) (aucune clé API nécessaire).
 
-![Alt img](https://images.ctfassets.net/zlsyc9paq6sa/3uBrJ07WSM40FpolgjInHY/7d886cb4187b52194bf9b63c183a1d3a/1627637330_x.gif)
+## Fonctionnalités
 
-## Features
-
-1. User's ability to search cities
-
-2. Current local time and date
-
-3. Temperatures and humidity
-
-4. Wind speed and direction
-
-5. Sunrise and sunset times
-
-6. Metric vs Imperial system
-
-7. Error handling and loading info
+1. Ville définie dans un fichier de configuration (plus de moteur de recherche)
+2. Date et heure locales
+3. Température, température ressentie et humidité
+4. Vitesse et direction du vent
+5. Visibilité
+6. Heures de lever et de coucher du soleil
+7. Système métrique ou impérial
+8. Rafraîchissement automatique des données toutes les heures
+9. Gestion des erreurs et écran de chargement
 
 ## Installation
 
-1. `git clone https://github.com/madzadev/weather-app.git`
-
+1. `git clone https://github.com/grimbertvalentin/weather-app.git`
 2. `cd weather-app`
-
 3. `npm install`
+4. `npm run dev`
+5. Ouvrir http://localhost:3000
 
-4. Log-in to [Openweathermap.com](https://openweathermap.org/)
+Sur une version récente de Node.js, si l'erreur `ERR_OSSL_EVP_UNSUPPORTED` apparaît, lancer avant `npm run dev` :
 
-5. Create an API key
+- PowerShell : `$env:NODE_OPTIONS="--openssl-legacy-provider"`
+- Mac/Linux : `export NODE_OPTIONS=--openssl-legacy-provider`
 
-6. `cp .env.example .env.local`
+## Configuration de la ville
 
-7. Paste API key for `OPENWEATHER_API_KEY`
+La ville se règle dans le fichier `config.json` à la racine du projet :
 
-8. `npm run dev`
+```json
+{
+  "city": "Rennes",
+  "country": "FR",
+  "latitude": 48.1173,
+  "longitude": -1.6778
+}
+```
 
-## Contributions
+Pour changer de ville, modifier ces quatre valeurs, enregistrer, puis recharger la page (redémarrer le serveur si besoin).
 
-Any feature requests and pull requests are welcome!
+## Fonctionnement
 
-## License
+- `config.json` : ville et coordonnées GPS.
+- `pages/api/data.js` : appelle Open-Meteo avec les coordonnées, puis convertit la réponse dans le format attendu par les composants.
+- `services/weatherCodes.js` : convertit les codes météo WMO d'Open-Meteo en description et icône.
+- `pages/index.js` : charge les données et les rafraîchit toutes les heures.
 
-The project is under [MIT license](https://choosealicense.com/licenses/mit/).
+## Licence
+
+Projet sous licence MIT. Projet d'origine : [madzadev/weather-app](https://github.com/madzadev/weather-app).
