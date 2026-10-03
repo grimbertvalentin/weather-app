@@ -50,6 +50,6 @@ Pour changer de ville, modifier ces quatre valeurs, enregistrer, puis recharger 
 - `services/weatherCodes.js` : convertit les codes météo WMO d'Open-Meteo en description et icône.
 - `pages/index.js` : charge les données et les rafraîchit toutes les heures.
 
-## Licence
+## Crédits
 
-Projet sous licence MIT. Projet d'origine : [madzadev/weather-app](https://github.com/madzadev/weather-app).
+Projet d'origine : [madzadev/weather-app](https://github.com/madzadev/weather-app).

@@ -57,7 +57,7 @@ export const App = () => {
       </ContentBox>
     </div>
   ) : weatherData && weatherData.message ? (
-    <ErrorScreen errorMessage="Weather data unavailable, retrying soon." />
+    <ErrorScreen errorMessage="Weather data unavailable, next attempt within the hour." />
   ) : (
     <LoadingScreen loadingMessage="Loading data..." />
   );
